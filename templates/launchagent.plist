@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  macOS LaunchAgent — fires auto-commit.sh when any WatchPaths file's mtime changes.
+  Install to ~/Library/LaunchAgents/<LABEL>.plist and run:
+      launchctl load ~/Library/LaunchAgents/<LABEL>.plist
+
+  Replace the __PLACEHOLDERS__ before installing:
+    __LABEL__         e.g. local.alice.ssh-config-watch
+    __SCRIPT_PATH__   absolute path to auto-commit.sh
+    __WATCH_PATHS__   one <string>...</string> per monitored file
+    __LOG__           e.g. /Users/alice/Library/Logs/ssh-config-watch.log
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>__LABEL__</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>__SCRIPT_PATH__</string>
+    </array>
+
+    <key>WatchPaths</key>
+    <array>
+        __WATCH_PATHS__
+    </array>
+
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+
+    <key>StandardOutPath</key>
+    <string>__LOG__</string>
+    <key>StandardErrorPath</key>
+    <string>__LOG__</string>
+</dict>
+</plist>

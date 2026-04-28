@@ -1,0 +1,22 @@
+# Linux systemd path unit — fires <DOMAIN>-config-watch.service when any monitored file changes.
+# Install to ~/.config/systemd/user/<DOMAIN>-config-watch.path and run:
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now <DOMAIN>-config-watch.path
+#
+# Replace placeholders below before installing.
+
+[Unit]
+Description=Watch __DOMAIN__ config files for changes
+
+[Path]
+# One PathChanged= per monitored file (absolute path)
+# PathChanged=/home/__USER__/.ssh/config
+# PathChanged=/home/__USER__/.ssh/known_hosts
+__PATH_CHANGED_LINES__
+
+# Optional: throttle so rapid sequential writes don't fire many times
+# (systemd doesn't have built-in throttle on .path, the script's git-diff check
+#  serves the same role: identical content → no commit)
+
+[Install]
+WantedBy=default.target

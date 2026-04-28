@@ -1,0 +1,11 @@
+# 白名单 .gitignore：默认忽略一切，只允许下方明确列出的路径
+# 这样 worktree 里同目录的运行时数据/缓存/临时文件不会被误吞
+*
+
+# .gitignore 自身必须可见（否则 git 看不到它）
+!.gitignore
+
+# 用户希望保护的文件，每一行 ! 后跟相对 worktree 根目录的路径
+# 例：worktree=~/.ssh，被保护文件=~/.ssh/config 和 ~/.ssh/known_hosts
+# !config
+# !known_hosts

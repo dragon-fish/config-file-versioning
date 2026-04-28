@@ -1,0 +1,13 @@
+# Linux systemd service unit — runs auto-commit.sh once when triggered by the .path unit.
+# Install to ~/.config/systemd/user/<DOMAIN>-config-watch.service
+#
+# Replace placeholders below before installing.
+
+[Unit]
+Description=Auto-commit __DOMAIN__ config changes
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash __SCRIPT_PATH__
+StandardOutput=append:__LOG__
+StandardError=append:__LOG__
