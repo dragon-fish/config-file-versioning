@@ -8,6 +8,28 @@ Designed around one rule: **whenever a watched file's content actually changes, 
 
 ---
 
+## 🚀 Set it up by pasting this prompt to your AI agent
+
+If you use Claude Code, Codex CLI, Gemini CLI, Cursor, or any agent that can fetch URLs and run shell commands, copy this prompt (replace `<files>`):
+
+```
+Set up automatic version backups for the following config files on my machine:
+  - <absolute path 1>
+  - <absolute path 2>
+  ...
+
+Follow the guide at:
+https://raw.githubusercontent.com/dragon-fish/config-file-versioning/main/INSTALLATION.md
+
+Ask me for any inputs you need (domain name, backup location, etc.) before running commands.
+```
+
+The agent will fetch [`INSTALLATION.md`](INSTALLATION.md), ask for the few inputs it needs, and walk through the setup with end-to-end verification.
+
+For manual setup or full design details, see the rest of this README and [`SKILL.md`](SKILL.md).
+
+---
+
 ## Why
 
 Modern dev environments are full of small but important config files that get rewritten by tools you don't control:
@@ -56,11 +78,10 @@ This skill fills the gap: a tiny per-config-domain git repo + an OS event listen
 
 ### As an agent skill
 
-If you're using an agent that supports the [`.agents/skills/` convention](https://github.com/openai/openai-cookbook/blob/main/articles/skills.md) (Claude Code, Codex, Gemini CLI, …):
+If you're using an agent that supports the `.agents/skills/` convention (Claude Code, Codex, Gemini CLI, …):
 
 ```bash
-# clone into your skills directory (or symlink)
-git clone https://github.com/<YOUR>/config-file-versioning.git \
+git clone https://github.com/dragon-fish/config-file-versioning.git \
     ~/.agents/skills/config-file-versioning
 ```
 
@@ -117,15 +138,15 @@ The decision boundary: **does some non-you actor write this file?** If yes, you'
 
 ## Comparison with similar tools
 
-| | `config-file-versioning` | [gitwatch](https://github.com/gitwatch/gitwatch) | [etckeeper](https://etckeeper.branchable.com/) | dotfile managers (chezmoi, yadm) |
-|---|---|---|---|---|
-| Auto-commit on change | ✅ | ✅ | ✅ (on package ops) | ❌ (manual) |
-| Per-domain isolated repos | ✅ | ❌ (one watch dir) | ❌ (only `/etc`) | depends |
-| separate-git-dir layout | ✅ | ❌ | ❌ | ❌ |
-| Whitelist `.gitignore` recipe | ✅ | ❌ | n/a | ❌ |
-| OS-native event service mgmt | ✅ launchd / systemd | wraps fswatch/inotify in foreground | apt/yum/pacman hooks | n/a |
-| Cross-machine sync | ❌ (deliberate) | optional `git push` | optional | ✅ (built-in) |
-| Best for | Protecting files mutated by other tools | Watching arbitrary dirs with optional push | Linux `/etc` | Cross-machine dotfile portability |
+|                               | `config-file-versioning`                | [gitwatch](https://github.com/gitwatch/gitwatch) | [etckeeper](https://etckeeper.branchable.com/) | dotfile managers (chezmoi, yadm)  |
+| ----------------------------- | --------------------------------------- | ------------------------------------------------ | ---------------------------------------------- | --------------------------------- |
+| Auto-commit on change         | ✅                                      | ✅                                               | ✅ (on package ops)                            | ❌ (manual)                       |
+| Per-domain isolated repos     | ✅                                      | ❌ (one watch dir)                               | ❌ (only `/etc`)                               | depends                           |
+| separate-git-dir layout       | ✅                                      | ❌                                               | ❌                                             | ❌                                |
+| Whitelist `.gitignore` recipe | ✅                                      | ❌                                               | n/a                                            | ❌                                |
+| OS-native event service mgmt  | ✅ launchd / systemd                    | wraps fswatch/inotify in foreground              | apt/yum/pacman hooks                           | n/a                               |
+| Cross-machine sync            | ❌ (deliberate)                         | optional `git push`                              | optional                                       | ✅ (built-in)                     |
+| Best for                      | Protecting files mutated by other tools | Watching arbitrary dirs with optional push       | Linux `/etc`                                   | Cross-machine dotfile portability |
 
 The closest functional overlap is `gitwatch`. Differences: this skill bakes in the `separate-git-dir` + whitelist + per-domain-repo conventions, and integrates as an agent skill so an LLM-based agent can operate it.
 
@@ -135,8 +156,9 @@ The closest functional overlap is `gitwatch`. Differences: this skill bakes in t
 
 ```
 config-file-versioning/
-├── README.md           ← this file
-├── SKILL.md            ← agent-readable recipe
+├── README.md           ← this file (human-facing)
+├── INSTALLATION.md     ← short imperative guide for AI agents to follow
+├── SKILL.md            ← detailed skill spec (Chinese, agent-readable)
 ├── LICENSE             ← MIT
 └── templates/
     ├── auto-commit.sh           ← parametrized commit script
