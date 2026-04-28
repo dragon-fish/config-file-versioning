@@ -8,20 +8,20 @@ Designed around one rule: **whenever a watched file's content actually changes, 
 
 ---
 
-## 🚀 Set it up by pasting this prompt to your AI agent
+## 🤖 Set it up by pasting this prompt to your AI agent
 
-If you use Claude Code, Codex CLI, Gemini CLI, Cursor, or any agent that can fetch URLs and run shell commands, copy this prompt (replace `<files>`):
+If you use Claude Code, Codex CLI, Gemini CLI, Cursor, or any agent that can fetch URLs and run shell commands, copy this prompt:
 
 ```
-Set up automatic version backups for these config files on my machine:
-  - <absolute path 1>
-  - <absolute path 2>
-
 Read https://raw.githubusercontent.com/dragon-fish/config-file-versioning/main/INSTALLATION.md
 and follow it. Ask me anything you need before running commands.
 ```
 
-The agent will install the skill, then read [`SKILL.md`](SKILL.md) for the actual playbook and walk through setup with end-to-end verification.
+## 😎 Install by yourself
+
+```bash
+npx skills add dragon-fish/config-file-versioning
+```
 
 For manual setup or full design details, see the rest of this README and [`SKILL.md`](SKILL.md).
 
@@ -91,8 +91,6 @@ The agent will walk you through the setup steps in [`SKILL.md`](SKILL.md) — as
 ### Manually (no agent)
 
 Read [`SKILL.md`](SKILL.md) — it's a step-by-step recipe a human can follow. Copy templates from [`templates/`](templates/) and fill in the placeholders.
-
-A future version may ship an `install.sh` for one-shot CLI use. PRs welcome.
 
 ---
 
@@ -175,6 +173,5 @@ MIT. See [LICENSE](LICENSE).
 
 Bug reports and PRs welcome. Particularly:
 
-- A turnkey `install.sh` for non-agent users
 - BSD/illumos/Windows watcher templates
 - Pre-baked `examples/` for common dotfiles (ssh, git, vscode, claude, ...)
