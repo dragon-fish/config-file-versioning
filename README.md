@@ -13,18 +13,15 @@ Designed around one rule: **whenever a watched file's content actually changes, 
 If you use Claude Code, Codex CLI, Gemini CLI, Cursor, or any agent that can fetch URLs and run shell commands, copy this prompt (replace `<files>`):
 
 ```
-Set up automatic version backups for the following config files on my machine:
+Set up automatic version backups for these config files on my machine:
   - <absolute path 1>
   - <absolute path 2>
-  ...
 
-Follow the guide at:
-https://raw.githubusercontent.com/dragon-fish/config-file-versioning/main/INSTALLATION.md
-
-Ask me for any inputs you need (domain name, backup location, etc.) before running commands.
+Read https://raw.githubusercontent.com/dragon-fish/config-file-versioning/main/INSTALLATION.md
+and follow it. Ask me anything you need before running commands.
 ```
 
-The agent will fetch [`INSTALLATION.md`](INSTALLATION.md), ask for the few inputs it needs, and walk through the setup with end-to-end verification.
+The agent will install the skill, then read [`SKILL.md`](SKILL.md) for the actual playbook and walk through setup with end-to-end verification.
 
 For manual setup or full design details, see the rest of this README and [`SKILL.md`](SKILL.md).
 
