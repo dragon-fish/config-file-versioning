@@ -26,4 +26,4 @@ TS=$(date "+%Y-%m-%d %H:%M:%S")
 git commit -q -m "chore(auto): $TS — $CHANGED"
 
 mkdir -p "$(dirname "$LOG")"
-echo "$(date) | committed: $CHANGED" >>"$LOG"
+echo "$(date) | $WORKTREE | committed: $CHANGED" >>"$LOG"

@@ -119,7 +119,7 @@ git -C "$GITDIR" config core.worktree "<WORKTREE>"
 | 占位符 | 替换为 |
 |---|---|
 | `__WORKTREE__` | `<WORKTREE>` 绝对路径 |
-| `__LOG__` | 日志路径，建议 `~/Library/Logs/<DOMAIN>-config-watch.log`（macOS）或 `~/.local/state/<DOMAIN>-config-watch.log`（Linux） |
+| `__LOG__` | 日志路径，建议 `~/Library/Logs/config-file-versioning.log`（macOS）或 `~/.local/state/config-file-versioning.log`（Linux） |
 
 `chmod +x` 它。
 

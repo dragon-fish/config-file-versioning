@@ -9,7 +9,7 @@
     __LABEL__         e.g. local.alice.ssh-config-watch
     __SCRIPT_PATH__   absolute path to auto-commit.sh
     __WATCH_PATHS__   one <string>...</string> per monitored file
-    __LOG__           e.g. /Users/alice/Library/Logs/ssh-config-watch.log
+    __LOG__           e.g. /Users/alice/Library/Logs/config-file-versioning.log
 -->
 <plist version="1.0">
 <dict>
